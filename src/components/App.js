@@ -8,22 +8,11 @@ const App = () => {
   console.log("component mounted");
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        let url = "https://jsonplaceholder.typicode.com/posts";
-        let response = await fetch(url);
-        let data = await response.json();
-        console.log(data);
-        setAllPosts(data);
-      } catch (error) {
-        console.log(error);
-        setAllPosts([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
+    let url = "https://jsonplaceholder.typicode.com/posts";
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => setAllPosts(data));
+    console.log(allPosts);
   }, []);
 
   const filteredPosts = useMemo(() => {
