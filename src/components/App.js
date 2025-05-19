@@ -8,10 +8,13 @@ const App = () => {
   console.log("component mounted");
 
   useEffect(() => {
+    setLoading(true);
     let url = "https://jsonplaceholder.typicode.com/posts";
     fetch(url)
       .then((res) => res.json())
-      .then((data) => setAllPosts(data));
+      .then((data) => {
+        setAllPosts(data), setLoading(false);
+      });
     console.log(allPosts);
   }, []);
 
